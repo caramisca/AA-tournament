@@ -38,6 +38,19 @@ The "Rocky" algorithm is a strategy designed for the Iterated Prisoner's Dilemma
   - **Patterns of behavior**: It identifies patterns such as alternating defecting and cooperating and adjusts accordingly.
   - **Mimicking**: The algorithm will mimic the opponent's previous move if they have been cooperating with it.
 
+
+## Second Part: Opponent Selection Logic
+
+To support the second tournament phase, the strategy was extended to **`strategy_round_2`**. In addition to Rocky’s original move logic, we now select the next opponent dynamically:
+
+- **Avoids any opponent that has ever defected** against us (including retaliators), prioritizing only never-defecting players (e.g., Tit-for-Tat and forgiving variants).
+- **Prefers opponents with whom we’ve played the fewest rounds**, discovering new allies first.
+- **Falls back** to the highest overall cooperation rate if no purely friendly candidates remain.
+
+This ensures maximum exploit of cooperative algorithms while minimizing interactions with mean or unpredictable players, all within the 200-round-per-opponent constraint.
+
+
+
 ## Conclusion
 
 The Rocky algorithm is a balanced approach that promotes cooperation when possible but adjusts its strategy based on the opponent's behavior. It uses a mix of cooperation rate analysis, recent behavior patterns, and mimicry to determine the best course of action. Its adaptability helps it thrive in diverse competitive environments.
